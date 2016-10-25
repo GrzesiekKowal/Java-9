@@ -13,11 +13,11 @@ public class ControlProcess {
         out.println("Your pid is " + ProcessHandle.current().getPid());
         out.println("Started process is " + sleeper.getPid());
 
-        ProcessHandle sleeperHandle = ProcessHandle.of(sleeper.getPid())   // Optional
+        ProcessHandle sleeperHandle = ProcessHandle.of(sleeper.getPid())
                 .orElseThrow(IllegalStateException::new);
 
         // Do things on exiting process
-        sleeperHandle.onExit().thenRun(                                    // CompletableFuture
+        sleeperHandle.onExit().thenRun(
                 () -> out.println("Sleeper exited")
         );
 
